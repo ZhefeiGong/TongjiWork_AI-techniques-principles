@@ -1,0 +1,142 @@
+归结过程如下:
+c1      K(A,A)|K(B,A)|K(C,A)
+c2      ~K(a,A)|H(a,A)
+c3      ~H(A,b)|~H(C,b)
+c4      E(c,B)|H(A,c)
+c5      R(d,A)|H(B,d)
+c6      ~H(A,e)|H(B,e)
+c7      ~H(g,f(g))
+c8      ~K(h,A)|~R(h,A)
+c9      ~E(A,B)
+c10     ~K(u,A)|A(u)
+T1      K(B,A)|K(C,A)|H(A,A)          c1+c2          a-->A
+T2      K(B,A)|K(C,A)|~R(A,A)         c1+c8          h-->A
+T3      K(B,A)|K(C,A)|A(A)            c1+c10         u-->A
+T4      ~K(A,A)|~H(C,A)               c2+c3          a-->A;b-->A
+T5      ~K(A,A)|H(B,A)                c2+c6          a-->A;e-->A
+T6      ~H(C,c)|E(c,B)                c3+c4          b-->c
+T7      E(e,B)|H(B,e)                 c4+c6          c-->e
+T8      E(f(A),B)                     c4+c7          g-->A;c-->f(A)
+T9      H(A,A)                        c4+c9          c-->A
+T10     R(f(B),A)                     c5+c7          g-->B;d-->f(B)
+T11     H(B,h)|~K(h,A)                c5+c8          d-->h
+T12     ~H(A,f(B))                    c6+c7          g-->B;e-->f(B)
+T13     K(B,A)|K(C,A)|~H(C,A)         c1+T4
+T14     K(B,A)|K(C,A)|H(B,A)          c1+T5
+T15     H(B,A)|K(C,A)|~R(A,A)         c2+T2          a-->B
+T16     H(B,A)|K(C,A)|A(A)            c2+T3          a-->B
+T17     ~K(C,A)|~K(A,A)               c2+T4          a-->C
+T18     ~K(C,A)|E(A,B)                c2+T6          a-->C;c-->A
+T19     ~H(C,A)                       c3+T9          b-->A
+T20     E(f(B),B)                     c4+T12         c-->f(B)
+T21     H(B,A)                        c6+T9          e-->A
+T22     E(f(B),B)                     c7+T7          g-->B;e-->f(B)
+T23     ~K(f(B),A)                    c7+T11         g-->B;h-->f(B)
+T24     ~R(B,A)|K(C,A)|~R(A,A)        c8+T2          h-->B
+T25     ~R(B,A)|K(C,A)|A(A)           c8+T3          h-->B
+T26     ~K(B,A)                       c8+T10         h-->B
+T27     A(B)|K(C,A)|~R(A,A)           c10+T2         u-->B
+T28     A(B)|K(C,A)|A(A)              c10+T3         u-->B
+T29     K(C,A)|~R(A,A)|H(B,B)         T2+T11         h-->B
+T30     K(C,A)|A(A)|H(B,B)            T3+T11         h-->B
+T31     K(B,A)|K(C,A)|~K(C,A)         c1+T17
+T32     K(A,A)|K(B,A)|E(A,B)          c1+T18
+T33     K(A,A)|K(C,A)                 c1+T26
+T34     ~K(C,A)                       c2+T19         a-->C
+T35     H(C,A)|~R(B,A)|~R(A,A)        c2+T24         a-->C
+T36     H(C,A)|~R(B,A)|A(A)           c2+T25         a-->C
+T37     H(C,A)|A(B)|~R(A,A)           c2+T27         a-->C
+T38     H(C,A)|A(B)|A(A)              c2+T28         a-->C
+T39     H(C,A)|~R(A,A)|H(B,B)         c2+T29         a-->C
+T40     H(C,A)|A(A)|H(B,B)            c2+T30         a-->C
+T41     ~R(C,A)|~R(B,A)|~R(A,A)       c8+T24         h-->C
+T42     ~R(C,A)|~R(B,A)|A(A)          c8+T25         h-->C
+T43     ~R(C,A)|A(B)|~R(A,A)          c8+T27         h-->C
+T44     ~R(C,A)|A(B)|A(A)             c8+T28         h-->C
+T45     ~R(C,A)|~R(A,A)|H(B,B)        c8+T29         h-->C
+T46     ~R(C,A)|A(A)|H(B,B)           c8+T30         h-->C
+T47     A(C)|~R(B,A)|~R(A,A)          c10+T24        u-->C
+T48     A(C)|~R(B,A)|A(A)             c10+T25        u-->C
+T49     A(C)|A(B)|~R(A,A)             c10+T27        u-->C
+T50     A(C)|A(B)|A(A)                c10+T28        u-->C
+T51     A(C)|~R(A,A)|H(B,B)           c10+T29        u-->C
+T52     A(C)|A(A)|H(B,B)              c10+T30        u-->C
+T53     K(B,A)|~R(A,A)|~K(A,A)        T2+T17
+T54     K(B,A)|~R(A,A)|E(A,B)         T2+T18
+T55     K(C,A)|~R(A,A)                T2+T26
+T56     K(B,A)|A(A)|~K(A,A)           T3+T17
+T57     K(B,A)|A(A)|E(A,B)            T3+T18
+T58     K(C,A)|A(A)                   T3+T26
+T59     H(B,C)|~R(B,A)|~R(A,A)        T11+T24        h-->C
+T60     H(B,C)|~R(B,A)|A(A)           T11+T25        h-->C
+T61     H(B,C)|A(B)|~R(A,A)           T11+T27        h-->C
+T62     H(B,C)|A(B)|A(A)              T11+T28        h-->C
+T63     H(B,C)|~R(A,A)|H(B,B)         T11+T29        h-->C
+T64     H(B,C)|A(A)|H(B,B)            T11+T30        h-->C
+T65     ~K(A,A)|~R(B,A)|~R(A,A)       T17+T24
+T66     ~K(A,A)|~R(B,A)|A(A)          T17+T25
+T67     ~K(A,A)|A(B)|~R(A,A)          T17+T27
+T68     ~K(A,A)|A(B)|A(A)             T17+T28
+T69     ~K(A,A)|~R(A,A)|H(B,B)        T17+T29
+T70     ~K(A,A)|A(A)|H(B,B)           T17+T30
+T71     E(A,B)|~R(B,A)|~R(A,A)        T18+T24
+T72     E(A,B)|~R(B,A)|A(A)           T18+T25
+T73     E(A,B)|A(B)|~R(A,A)           T18+T27
+T74     E(A,B)|A(B)|A(A)              T18+T28
+T75     E(A,B)|~R(A,A)|H(B,B)         T18+T29
+T76     E(A,B)|A(A)|H(B,B)            T18+T30
+T77     K(A,A)|K(B,A)                 c1+T34
+T78     H(C,A)|~R(A,A)                c2+T55         a-->C
+T79     H(C,A)|A(A)                   c2+T58         a-->C
+T80     ~H(A,A)|~R(B,A)|~R(A,A)       c3+T35         b-->A
+T81     ~H(A,A)|~R(B,A)|A(A)          c3+T36         b-->A
+T82     ~H(A,A)|A(B)|~R(A,A)          c3+T37         b-->A
+T83     ~H(A,A)|A(B)|A(A)             c3+T38         b-->A
+T84     ~H(A,A)|~R(A,A)|H(B,B)        c3+T39         b-->A
+T85     ~H(A,A)|A(A)|H(B,B)           c3+T40         b-->A
+T86     ~R(C,A)|~R(A,A)               c8+T55         h-->C
+T87     ~R(C,A)|A(A)                  c8+T58         h-->C
+T88     K(B,A)|~R(A,A)                c9+T54
+T89     K(B,A)|A(A)                   c9+T57
+T90     ~R(B,A)|~R(A,A)               c9+T71
+T91     ~R(B,A)|A(A)                  c9+T72
+T92     A(B)|~R(A,A)                  c9+T73
+T93     A(B)|A(A)                     c9+T74
+T94     ~R(A,A)|H(B,B)                c9+T75
+T95     A(A)|H(B,B)                   c9+T76
+T96     A(C)|~R(A,A)                  c10+T55        u-->C
+T97     A(C)|A(A)                     c10+T58        u-->C
+T98     H(B,C)|~R(A,A)                T10+T59
+T99     H(B,C)|A(A)                   T10+T60
+T100    ~K(A,A)|~R(A,A)               T10+T65
+T101    ~K(A,A)|A(A)                  T10+T66
+T102    E(A,B)|~R(A,A)                T10+T71
+T103    E(A,B)|A(A)                   T10+T72
+T104    ~K(A,A)|K(A,A)                T17+T33
+T105    E(A,B)|K(A,A)                 T18+T33
+T106    K(A,A)                        T33+T34
+T107    ~R(A,A)                       T34+T55
+T108    A(A)                          T34+T58
+谋杀A的人是:A
+
+
+最优过程如下:
+c1      K(A,A)|K(B,A)|K(C,A)
+c2      ~K(a,A)|H(a,A)
+c3      ~H(A,b)|~H(C,b)
+c4      E(c,B)|H(A,c)
+c5      R(d,A)|H(B,d)
+c6      ~H(A,e)|H(B,e)
+c7      ~H(g,f(g))
+c8      ~K(h,A)|~R(h,A)
+c9      ~E(A,B)
+c10     ~K(u,A)|A(u)
+T9      H(A,A)                        c4+c9          c-->A
+T19     ~H(C,A)                       c3+T9          b-->A
+T34     ~K(C,A)                       c2+T19         a-->C
+T3      K(B,A)|K(C,A)|A(A)            c1+c10         u-->A
+T10     R(f(B),A)                     c5+c7          g-->B;d-->f(B)
+T26     ~K(B,A)                       c8+T10         h-->B
+T58     K(C,A)|A(A)                   T3+T26
+T108    A(A)                          T34+T58
+谋杀A的人是:A

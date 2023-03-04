@@ -1,0 +1,11 @@
+K(A,A)|K(B,A)|K(C,A)
+~K(a,A)|H(a,A)
+~H(A,b)|~H(C,b)
+ E(c,B)|H(A,c)
+ R(d,A)|H(B,d)
+~H(A,e)|H(B,e)
+~H(g,f(g))
+~K(h,A)|~R(h,A)
+~E(A,B)
+~K(u,A)|A(u)
+#
