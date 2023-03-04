@@ -1,1 +1,1 @@
-# TongjiWork_Principles-tech-in-AI
+# TongjiWork_AI-techniques-principles
